@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: unnamed-app-backend
+    env: go
+    region: oregon  # 或其他您偏好的區域
+    buildCommand: cd backend && go build -o main ./cmd/api
+    startCommand: ./backend/main
+    envVars:
+      - key: GIN_MODE
+        value: release
+      - key: PORT
+        value: 8080
+      # 其他環境變數會在 Render 儀表板中設置
+    healthCheckPath: /health
+    autoDeploy: true 
